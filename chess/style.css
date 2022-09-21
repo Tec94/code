@@ -1,0 +1,53 @@
+table.letter-lable {
+    margin-top: 70px;
+    margin-left: 416.1px;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+table {
+    margin-left: 360px;
+    margin-top: 0px;
+    border: solid black 2px;
+}
+
+td {
+    padding: 30px;
+    width: 2.29px;
+    outline-offset: -1.5px;
+}
+
+td:hover {
+    cursor: pointer;
+}
+
+#letter {
+    border: none;
+    padding: 20px 24.39px 20px 24.39px;
+}
+
+.number {
+    border: none;
+    padding: 22px;
+}
+
+tr:nth-child(odd) td:nth-child(odd), tr:nth-child(even) td:nth-child(even) {
+    background: rgb(238, 238, 213);
+    outline: 1.5px solid rgb(238, 238, 213);
+}
+
+tr:nth-child(even) td:nth-child(odd), tr:nth-child(odd) td:nth-child(even) {
+    background: rgb(125, 148, 93);
+    outline: 1.5px solid rgb(125, 148, 93);
+}
+
+tr:nth-child(1) td:nth-child(1), tr:nth-child(2) td:nth-child(1), tr:nth-child(3) td:nth-child(1), tr:nth-child(4) td:nth-child(1), tr:nth-child(5) td:nth-child(1), tr:nth-child(6) td:nth-child(1), tr:nth-child(7) td:nth-child(1), tr:nth-child(8) td:nth-child(1){
+    border-right: solid black 2px;
+    background: none;
+    outline: none;
+}
+
+.letter-lable tr:nth-child(1) td:nth-child(1),.letter-lable tr:nth-child(1) td:nth-child(2),.letter-lable tr:nth-child(1) td:nth-child(3),.letter-lable tr:nth-child(1) td:nth-child(4),.letter-lable tr:nth-child(1) td:nth-child(5),.letter-lable tr:nth-child(1) td:nth-child(6),.letter-lable tr:nth-child(1) td:nth-child(7),.letter-lable tr:nth-child(1) td:nth-child(8) {
+    background: none;
+    outline: none;
+}
