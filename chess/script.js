@@ -13,7 +13,7 @@ class Table {
         // check for the image in the table cell, might add another function of this in cell
     }
 }
-a
+
 class Cell {
     constructor(location, color) {
         this.location = location;
