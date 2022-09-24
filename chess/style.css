@@ -13,12 +13,18 @@ table {
 
 td {
     padding: 30px;
-    width: 2.29px;
     outline-offset: -1.5px;
+    width: 12vw;
+    height: 12vw;
 }
 
 td:hover {
     cursor: pointer;
+}
+
+.piece_image {
+    position: relative;
+    width: 100%;
 }
 
 #letter {
