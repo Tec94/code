@@ -4,26 +4,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>foundation</title>
+    <style>
+        div.flex-letter {
+            display: flex;
+            position: absolute;
+            justify-content: space-around;
+            align-items: center;
+
+            width: calc(64px*8);
+            top: calc(489px + 69px);
+            left: 390px;
+        }
+        div.flex-number {
+            display: flex;
+            position: absolute;
+            flex-direction: column-reverse;
+            justify-content: space-around;
+            align-items: center;
+
+            height: calc(63.3px*8);
+            top: calc(-15px + 77px);
+            left: 373px;
+        }
+        table {
+            margin-left: 360px;
+            margin-top: 80px;
+            border: solid black 2px;
+        }
+        td {
+            
+            height: 62.29px;
+            width: 62.29px;
+            outline-offset: -1.5px;
+        }
+        td img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        td:hover {
+            cursor: pointer;
+        }
+        .piece_image {
+            object-fit: cover;
+        }
+        tr:nth-child(odd) td:nth-child(odd), tr:nth-child(even) td:nth-child(even) {
+            background: rgb(238, 238, 213);
+            outline: 1.5px solid rgb(238, 238, 213);
+        }
+        tr:nth-child(even) td:nth-child(odd), tr:nth-child(odd) td:nth-child(even) {
+            background: rgb(125, 148, 93);
+            outline: 1.5px solid rgb(125, 148, 93);
+        }
+    </style>
 </head>
 <body>
-    <link rel="stylesheet" href="style.css">
 
-    <table class="letter-lable">
-        <tr>
-            <td id="letter"><strong>A</strong></td>
-            <td id="letter"><strong>B</strong></td>
-            <td id="letter"><strong>C</strong></td>
-            <td id="letter"><strong>D</strong></td>
-            <td id="letter"><strong>E</strong></td>
-            <td id="letter"><strong>F</strong></td>
-            <td id="letter"><strong>G</strong></td>
-            <td id="letter"><strong>H</strong></td>
-        </tr>
-    </table>
+    <div class="flex-letter">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+        <div>E</div>
+        <div>F</div>
+        <div>G</div>
+        <div>H</div>
+    </div>
+
+    <div class="flex-number">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+    </div>
 
     <table class="chess-board" cellspacing="0px">
         <tr>
-            <td class="number"><strong>1</strong></td>
             <td id="a1"></td>
             <td id="b1"></td>
             <td id="c1"></td>
@@ -34,7 +94,6 @@
             <td id="h1"></td>
         </tr>
         <tr>
-            <td class="number"><strong>2</strong></td>
             <td id="a2"></td>
             <td id="b2"></td>
             <td id="c2"></td>
@@ -45,7 +104,6 @@
             <td id="h2"></td>
         </tr>
         <tr>
-            <td class="number"><strong>3</strong></td>
             <td id="a3"></td>
             <td id="b3"></td>
             <td id="c3"></td>
@@ -56,7 +114,6 @@
             <td id="h3"></td>
         </tr>
         <tr>
-            <td class="number"><strong>4</strong></td>
             <td id="a4"></td>
             <td id="b4"></td>
             <td id="c4"></td>
@@ -67,7 +124,6 @@
             <td id="h4"></td>
         </tr>
         <tr>
-            <td class="number"><strong>5</strong></td>
             <td id="a5"></td>
             <td id="b5"></td>
             <td id="c5"></td>
@@ -78,7 +134,6 @@
             <td id="h5"></td>
         </tr>
         <tr>
-            <td class="number"><strong>6</strong></td>
             <td id="a6"></td>
             <td id="b6"></td>
             <td id="c6"></td>
@@ -89,7 +144,6 @@
             <td id="h6"></td>
         </tr>
         <tr>
-            <td class="number"><strong>7</strong></td>
             <td id="a7"></td>
             <td id="b7"></td>
             <td id="c7"></td>
@@ -100,7 +154,6 @@
             <td id="h7"></td>
         </tr>
         <tr>
-            <td class="number"><strong>8</strong></td>
             <td id="a8"></td>
             <td id="b8"></td>
             <td id="c8"></td>
