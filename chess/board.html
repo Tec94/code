@@ -14,6 +14,8 @@
             width: calc(64px*8);
             top: calc(489px + 69px);
             left: 390px;
+
+            z-index: 1;
         }
         div.flex-number {
             display: flex;
@@ -25,6 +27,8 @@
             height: calc(63.3px*8);
             top: calc(-15px + 77px);
             left: 373px;
+
+            z-index: 1;
         }
         table {
             margin-left: 360px;
@@ -32,15 +36,18 @@
             border: solid black 2px;
         }
         td {
-            
             height: 62.29px;
             width: 62.29px;
             outline-offset: -1.5px;
+            position: relative;
         }
         td img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
+            width: 50%;
+            height: 50%;
+            position: relative;
+            object-fit: contain;
+
+            left: 14.5px;
         }
         td:hover {
             cursor: pointer;
@@ -84,7 +91,9 @@
 
     <table class="chess-board" cellspacing="0px">
         <tr>
-            <td id="a1"></td>
+            <td id="a1">
+                <img src="./images/black_pawn.png" alt="">
+            </td>
             <td id="b1"></td>
             <td id="c1"></td>
             <td id="d1"></td>
