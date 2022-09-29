@@ -29,7 +29,7 @@ class Cell {
         last_square = this.location;
         last_color = this.color;
 
-        this.table_cell.style.padding = '28px';
+        this.table_cell.style.padding = '1px';
         this.table_cell.style.outlineColor = 'rgb(0, 170, 255)';
     }
 
@@ -73,10 +73,10 @@ for (let x = 0; x < 8; x++) {
         var color = '';
 
         // check if x%2 = 0 and y%2 = 0 then assign to color
-        if (x%2==1 && y%2==1) {color = 'rgb(125, 148, 93)'};
-        if (x%2==0 && y%2==0) {color = 'rgb(125, 148, 93)'};
-        if (x%2==1 && y%2==0) {color = 'rgb(238, 238, 213)'};
-        if (x%2==0 && y%2==1) {color = 'rgb(238, 238, 213)'};
+        if (x%2==1 && y%2==1) {color = 'rgb(238, 238, 213)'};
+        if (x%2==0 && y%2==0) {color = 'rgb(238, 238, 213)'};
+        if (x%2==1 && y%2==0) {color = 'rgb(125, 148, 93)'};
+        if (x%2==0 && y%2==1) {color = 'rgb(125, 148, 93)'};
 
         // creates a new Cell object for every cell
         cell_objects[x][y] = new Cell(loc, color);
