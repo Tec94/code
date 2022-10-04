@@ -1,16 +1,18 @@
 class Table {
     constructor() {
         this.chess_table = document.getElementById('chess-board');
-        this.turn = document.getElementById('turn-tracker')
+        this.turn = document.getElementById('turn-tracker');
     }
 
     track_turn() {
         if ((turn_count % 2) == 0) { // if turn_count is even - black moves
-            turn = 'black';
-            this.turn.innerHTML(turn);
+            turn = 'Black';
+            this.turn.innerHTML = turn;
+            console.log(this.turn.innerHTML);
         } else if ((turn_count % 2) == 1) { // if turn_count is odd - white moves
-            turn = 'white';
-            this.turn.innerHTML(turn);
+            turn = 'White';
+            this.turn.innerHTML = turn;
+            console.log(this.turn.innerHTML);
         }
     }
 
@@ -66,7 +68,7 @@ class Cell {
 global_clicked = false;
 last_square = "";
 last_color = "";
-turn = 'white';
+turn = 'White';
 turn_count = 1;
 
 const letter = ['a','b','c','d','e','f','g','h'];
