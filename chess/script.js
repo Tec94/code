@@ -1,13 +1,16 @@
 class Table {
     constructor() {
         this.chess_table = document.getElementById('chess-board');
+        this.turn = document.getElementById('turn-tracker')
     }
 
     track_turn() {
         if ((turn_count % 2) == 0) { // if turn_count is even - black moves
             turn = 'black';
+            this.turn.innerHTML(turn);
         } else if ((turn_count % 2) == 1) { // if turn_count is odd - white moves
             turn = 'white';
+            this.turn.innerHTML(turn);
         }
     }
 
