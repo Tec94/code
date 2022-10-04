@@ -1,12 +1,14 @@
 class Table {
-    constructor(turn, select_piece) {
-        this.turn = turn;
-        this.select_piece = select_piece;
+    constructor() {
+        this.chess_table = document.getElementById('chess-board');
     }
 
     track_turn() {
-        // if this.turn is even - black moves
-        // if this.turn is odd - white moves
+        if ((turn_count % 2) == 0) { // if turn_count is even - black moves
+            turn = 'black';
+        } else if ((turn_count % 2) == 1) { // if turn_count is odd - white moves
+            turn = 'white';
+        }
     }
 
     selected_piece() {
@@ -24,6 +26,7 @@ class Cell {
 
     highlight() {
         global_clicked = true;
+        turn_count += 1
         this.clicked = true;
         
         last_square = this.location;
@@ -61,11 +64,12 @@ global_clicked = false;
 last_square = "";
 last_color = "";
 turn = 'white';
-turn_counter = 1;
+turn_count = 1;
 
 const letter = ['a','b','c','d','e','f','g','h'];
 const num = [1,2,3,4,5,6,7,8];
 const cell_objects = [[],[],[],[],[],[],[],[]];
+var chess_table = document.getElementById('chess-board');
 
 for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
@@ -80,9 +84,11 @@ for (let x = 0; x < 8; x++) {
 
         // creates a new Cell object for every cell
         cell_objects[x][y] = new Cell(loc, color);
+        chess_table = new Table();
 
         document.getElementById(loc).addEventListener('click', function() {
             cell_objects[x][y].select()
+            chess_table.track_turn()
         }, false);
     }
 }
