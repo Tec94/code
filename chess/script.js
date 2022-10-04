@@ -7,10 +7,12 @@ class Table {
     track_turn() {
         if ((turn_count % 2) == 0) { // if turn_count is even - black moves
             turn = 'Black';
+            this.turn.style.opacity = 1;
             this.turn.innerHTML = turn;
             console.log(this.turn.innerHTML);
         } else if ((turn_count % 2) == 1) { // if turn_count is odd - white moves
             turn = 'White';
+            this.turn.style.opacity = 1;
             this.turn.innerHTML = turn;
             console.log(this.turn.innerHTML);
         }
