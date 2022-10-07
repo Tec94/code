@@ -83,12 +83,12 @@
             object-fit: cover;
         }
         tr:nth-child(odd) td:nth-child(odd), tr:nth-child(even) td:nth-child(even) {
-            background: rgb(238, 238, 213);
-            outline: 1.5px solid rgb(238, 238, 213);
-        }
-        tr:nth-child(even) td:nth-child(odd), tr:nth-child(odd) td:nth-child(even) {
             background: rgb(125, 148, 93);
             outline: 1.5px solid rgb(125, 148, 93);
+        }
+        tr:nth-child(even) td:nth-child(odd), tr:nth-child(odd) td:nth-child(even) {
+            background: rgb(238, 238, 213);
+            outline: 1.5px solid rgb(238, 238, 213);
         }
     </style>
 </head>
@@ -121,54 +121,24 @@
 
     <table id="chess-board" cellspacing="0px">
         <tr>
-            <td id="a1"><img src="./images/b_rook_png_256px.png"></td>
-            <td id="b1"><img src="./images/b_bishop_png_256px.png"></td>
-            <td id="c1"><img src="./images/b_knight_png_256px.png"></td>
-            <td id="d1"><img src="./images/b_queen_png_256px.png"></td>
-            <td id="e1"><img src="./images/b_king_png_256px.png"></td>
-            <td id="f1"><img src="./images/b_knight_png_256px.png"></td>
-            <td id="g1"><img src="./images/b_bishop_png_256px.png"></td>
-            <td id="h1"><img src="./images/b_rook_png_256px.png"></td>
+            <td id="a8"><img id="b_rook" src="./images/b_rook.png"></td>
+            <td id="b8"><img src="./images/b_bishop.png"></td>
+            <td id="c8"><img src="./images/b_knight.png"></td>
+            <td id="d8"><img src="./images/b_queen.png"></td>
+            <td id="e8"><img src="./images/b_king.png"></td>
+            <td id="f8"><img src="./images/b_knight.png"></td>
+            <td id="g8"><img src="./images/b_bishop.png"></td>
+            <td id="h8"><img src="./images/b_rook.png"></td>
         </tr>
         <tr>
-            <td id="a2"><img src="./images/b_pawn_png_256px.png"></td>
-            <td id="b2"><img src="./images/b_pawn_png_256px.png"></td>
-            <td id="c2"><img src="./images/b_pawn_png_256px.png"></td>
-            <td id="d2"><img src="./images/b_pawn_png_256px.png"></td>
-            <td id="e2"><img src="./images/b_pawn_png_256px.png"></td>
-            <td id="f2"><img src="./images/b_pawn_png_256px.png"></td>
-            <td id="g2"><img src="./images/b_pawn_png_256px.png"></td>
-            <td id="h2"><img src="./images/b_pawn_png_256px.png"></td>
-        </tr>
-        <tr>
-            <td id="a3"></td>
-            <td id="b3"></td>
-            <td id="c3"></td>
-            <td id="d3"></td>
-            <td id="e3"></td>
-            <td id="f3"></td>
-            <td id="g3"></td>
-            <td id="h3"></td>
-        </tr>
-        <tr>
-            <td id="a4"></td>
-            <td id="b4"></td>
-            <td id="c4"></td>
-            <td id="d4"></td>
-            <td id="e4"></td>
-            <td id="f4"></td>
-            <td id="g4"></td>
-            <td id="h4"></td>
-        </tr>
-        <tr>
-            <td id="a5"></td>
-            <td id="b5"></td>
-            <td id="c5"></td>
-            <td id="d5"></td>
-            <td id="e5"></td>
-            <td id="f5"></td>
-            <td id="g5"></td>
-            <td id="h5"></td>
+            <td id="a7"><img src="./images/b_pawn.png"></td>
+            <td id="b7"><img src="./images/b_pawn.png"></td>
+            <td id="c7"><img src="./images/b_pawn.png"></td>
+            <td id="d7"><img src="./images/b_pawn.png"></td>
+            <td id="e7"><img src="./images/b_pawn.png"></td>
+            <td id="f7"><img src="./images/b_pawn.png"></td>
+            <td id="g7"><img src="./images/b_pawn.png"></td>
+            <td id="h7"><img src="./images/b_pawn.png"></td>
         </tr>
         <tr>
             <td id="a6"></td>
@@ -181,24 +151,54 @@
             <td id="h6"></td>
         </tr>
         <tr>
-            <td id="a7"><img src="./images/w_pawn_png_256px.png"></td>
-            <td id="b7"><img src="./images/w_pawn_png_256px.png"></td>
-            <td id="c7"><img src="./images/w_pawn_png_256px.png"></td>
-            <td id="d7"><img src="./images/w_pawn_png_256px.png"></td>
-            <td id="e7"><img src="./images/w_pawn_png_256px.png"></td>
-            <td id="f7"><img src="./images/w_pawn_png_256px.png"></td>
-            <td id="g7"><img src="./images/w_pawn_png_256px.png"></td>
-            <td id="h7"><img src="./images/w_pawn_png_256px.png"></td>
+            <td id="a5"></td>
+            <td id="b5"></td>
+            <td id="c5"></td>
+            <td id="d5"></td>
+            <td id="e5"></td>
+            <td id="f5"></td>
+            <td id="g5"></td>
+            <td id="h5"></td>
         </tr>
         <tr>
-            <td id="a8"><img src="./images/w_rook_png_256px.png"></td>
-            <td id="b8"><img src="./images/w_bishop_png_256px.png"></td>
-            <td id="c8"><img src="./images/w_knight_png_256px.png"></td>
-            <td id="d8"><img src="./images/w_queen_png_256px.png"></td>
-            <td id="e8"><img src="./images/w_king_png_256px.png"></td>
-            <td id="f8"><img src="./images/w_knight_png_256px.png"></td>
-            <td id="g8"><img src="./images/w_bishop_png_256px.png"></td>
-            <td id="h8"><img src="./images/w_rook_png_256px.png"></td>
+            <td id="a4"></td>
+            <td id="b4"></td>
+            <td id="c4"></td>
+            <td id="d4"></td>
+            <td id="e4"></td>
+            <td id="f4"></td>
+            <td id="g4"></td>
+            <td id="h4"></td>
+        </tr>
+        <tr>
+            <td id="a3"></td>
+            <td id="b3"></td>
+            <td id="c3"></td>
+            <td id="d3"></td>
+            <td id="e3"></td>
+            <td id="f3"></td>
+            <td id="g3"></td>
+            <td id="h3"></td>
+        </tr>
+        <tr>
+            <td id="a2"><img src="./images/w_pawn.png"></td>
+            <td id="b2"><img src="./images/w_pawn.png"></td>
+            <td id="c2"><img src="./images/w_pawn.png"></td>
+            <td id="d2"><img src="./images/w_pawn.png"></td>
+            <td id="e2"><img src="./images/w_pawn.png"></td>
+            <td id="f2"><img src="./images/w_pawn.png"></td>
+            <td id="g2"><img src="./images/w_pawn.png"></td>
+            <td id="h2"><img src="./images/w_pawn.png"></td>
+        </tr>
+        <tr>
+            <td id="a1"><img src="./images/w_rook.png"></td>
+            <td id="b1"><img src="./images/w_bishop.png"></td>
+            <td id="c1"><img src="./images/w_knight.png"></td>
+            <td id="d1"><img src="./images/w_queen.png"></td>
+            <td id="e1"><img src="./images/w_king.png"></td>
+            <td id="f1"><img src="./images/w_knight.png"></td>
+            <td id="g1"><img src="./images/w_bishop.png"></td>
+            <td id="h1"><img src="./images/w_rook.png"></td>
         </tr>
     </table>
 

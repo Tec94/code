@@ -16,10 +16,14 @@ class Table {
             this.turn.innerHTML = turn;
             console.log(this.turn.innerHTML);
         }
+
     }
 
     selected_piece() {
-        // check for the image in the table cell, might add another function of this in cell
+        // check for the image in the table cell
+        var fullPath = document.getElementById('b_rook').src;
+        var fileName = fullPath.replace(/^.*[\\\/]/, '');
+        console.log(fileName);
     }
 }
 
@@ -95,6 +99,7 @@ for (let x = 0; x < 8; x++) {
 
         document.getElementById(loc).addEventListener('click', function() {
             cell_objects[x][y].select()
+            chess_table.get_name()
             chess_table.track_turn()
         }, false);
     }
