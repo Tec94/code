@@ -22,7 +22,7 @@ class Table {
     selected_piece() {
         // check for the image in the table cell
         var fullPath = document.getElementById('b_rook').src;
-        var fileName = fullPath.replace(/^.*[\\\/]/, '');
+        var fileName = fullPath.replace(/^.*[\\\/\_bw]/, '');
         console.log(fileName);
     }
 }
