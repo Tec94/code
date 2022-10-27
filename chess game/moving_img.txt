@@ -1,0 +1,2 @@
+save src attribute of starting cell to a var in script.js
+change src attribute of destination cell to src var

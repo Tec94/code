@@ -24,6 +24,7 @@ class Table {
         var fullPath = document.getElementById('b_rook').src;
         var fileName = fullPath.replace(/^.*[\\\/\_bw]/, '');
         console.log(fileName);
+        
     }
 }
 
@@ -58,6 +59,10 @@ class Cell {
 
     }
 
+    removeimg() {
+        this.table_cell.removeChild();
+    }
+
     select() { // manages click
         
         if (this.clicked==false && global_clicked==false) { // first click
@@ -77,10 +82,19 @@ last_color = "";
 turn = 'White';
 turn_count = 1;
 
+starting = "";
+destination = "";
+
 const letter = ['a','b','c','d','e','f','g','h'];
 const num = [1,2,3,4,5,6,7,8];
 const cell_objects = [[],[],[],[],[],[],[],[]];
 var chess_table = document.getElementById('chess-board');
+
+let a = 'test';
+
+window.test=function() {
+    
+}
 
 for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
@@ -99,7 +113,7 @@ for (let x = 0; x < 8; x++) {
 
         document.getElementById(loc).addEventListener('click', function() {
             cell_objects[x][y].select()
-            chess_table.get_name()
+            test()
             chess_table.track_turn()
         }, false);
     }
