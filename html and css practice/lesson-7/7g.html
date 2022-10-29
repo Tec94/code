@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        div, input, button {
+            position: absolute;
+            vertical-align: middle;
+        }
+        .pic-cont {
+            height: 50px;
+            width: 50px;
+            padding: 10px;
+        }
         .pic {
             height: 100%;
             width: 100%;
@@ -12,16 +21,44 @@
             object-fit: cover;
             border-radius: 100%;
 
-            
         }
-        .pic-cont {
-            height: 60px;
-            width: 60px;
+        .text-bar {
+            border: 0px;
+            padding: 10px;
+            padding-right: 25px;
 
+            font-size: large;
+            height: 38;
+
+            left: 80;
+            top: 22;
+        }
+        .text-bar:focus-visible {
+            border-radius: 145px;
+        }
+        .tweet {
+            left: 340;
+            top: 22;
+
+            height: 38;
+            width: 80;
+            
+            background-color: rgb(0, 179, 255);
+            border: 0px;
+            border-radius: 40px;
+
+            color: white;
+            font-size: medium;
+            font-weight: bold;
+        }
+        .tweet:hover {
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="pic-cont"><img class="pic" src="./thumbnails/TOjqFjn_Ux0.jpg"></div>
+    <input placeholder="What's happening?" class="text-bar" type="text">
+    <button class="tweet">Tweet</button>
 </body>
 </html>
