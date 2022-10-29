@@ -9,12 +9,10 @@ class Table {
             turn = 'Black';
             this.turn.style.opacity = 1;
             this.turn.innerHTML = turn;
-            console.log(this.turn.innerHTML);
         } else if ((turn_count % 2) == 1) { // if turn_count is odd - white moves
             turn = 'White';
             this.turn.style.opacity = 1;
             this.turn.innerHTML = turn;
-            console.log(this.turn.innerHTML);
         }
 
     }
@@ -56,14 +54,34 @@ class Cell {
 
         this.clicked = false;
         global_clicked = false;
-
     }
 
-    removeimg() {
-        this.table_cell.removeChild();
+    moveImage() {
+
     }
 
     select() { // manages click
+        if (starting == []) {
+            starting[0] = this.table_cell.getAttribute('row');
+            starting[1] = this.table_cell.getAttribute('column');
+
+            starting[0] = starting[0]-1;
+            starting[1] = starting[1]-1;
+
+            console.log(starting);
+        } else if (destination == []) {
+            destination[0] = this.table_cell.getAttribute('row');
+            destination[1] = this.table_cell.getAttribute('column');
+
+            destination[0] = destination[0]-1;
+            destination[1] = destination[1]-1;
+
+            console.log(destination);
+        } 
+        if (starting != [] && destination != []) {
+            starting = [];
+            destination = [];
+        }
         
         if (this.clicked==false && global_clicked==false) { // first click
             this.highlight();
@@ -82,8 +100,8 @@ last_color = "";
 turn = 'White';
 turn_count = 1;
 
-starting = "";
-destination = "";
+starting = [];
+destination = [];
 
 const letter = ['a','b','c','d','e','f','g','h'];
 const num = [1,2,3,4,5,6,7,8];
@@ -113,7 +131,6 @@ for (let x = 0; x < 8; x++) {
 
         document.getElementById(loc).addEventListener('click', function() {
             cell_objects[x][y].select()
-            test()
             chess_table.track_turn()
         }, false);
     }

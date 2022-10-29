@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, td {
+        border: 1px solid black;
+        }
+        img {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        left: calc(50% - 10px);
+        }
+    </style>
+</head>
+<body>
+    <table id="myTable">
+        <tr>
+          <td>
+            <p>Row1 cell1</p>
+          </td>
+          <td>
+            <p>Row1 cell2</p>
+          </td>
+          <td>
+            <p>Row1 cell3</p>
+          </td>
+          <td>
+            <p>Row1 cell4</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Row2 cell1</p>
+          </td>
+          <td>
+            <p>Row2 cell2</p>
+          </td>
+          <td>
+            <p>Row2 cell3</p>
+          </td>
+          <td>
+            <p>Row2 cell4</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Row3 cell1</p>
+          </td>
+          <td>
+            <p>Row3 cell2</p>
+          </td>
+          <td>
+            <p>Row3 cell3</p>
+          </td>
+          <td>
+            <p>Row3 cell4</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Row4 cell1</p>
+          </td>
+          <td>
+            <p>Row4 cell2</p>
+          </td>
+          <td>
+            <p>Row4 cell3</p>
+          </td>
+          <td>
+            <p>Row4 cell4</p>
+          </td>
+        </tr>
+      </table>
+      <br>
+      
+      <!-- calls the function that moves the image -->
+      <button onclick="moveImageAlongCells()">STEP</button>
+      
+      <!-- resets the table to it's original form. (without any images) -->
+      <button onclick="reset()">RESET</button>
+
+      <script>
+        var table = document.getElementById('myTable');
+        var img = document.createElement("IMG"); //create the image
+        img.setAttribute("src", "./images/b_bishop.png");
+        var temp;
+        var row = 0, column = 0;
+        var currentCell;
+
+        function moveImageAlongCells() { //Function to move the image along the cells
+          if (temp) {
+              currentCell.removeChild(currentCell.firstElementChild);
+              currentCell.appendChild(temp);
+          }
+          currentCell = table.rows[row].cells[column];
+          temp = currentCell.firstElementChild;
+          column++;
+          row++;
+          currentCell.removeChild(currentCell.firstElementChild);
+          currentCell.appendChild(img);
+        }
+
+        function reset() {
+          if (currentCell && temp) {
+              currentCell.removeChild(currentCell.firstElementChild);
+              currentCell.appendChild(temp);
+              row = 0;
+              column = 0;
+          }
+        }
+      </script>
+</body>
+</html>
