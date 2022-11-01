@@ -120,12 +120,6 @@ const num = [1,2,3,4,5,6,7,8];
 const cell_objects = [[],[],[],[],[],[],[],[]];
 var chess_table = document.getElementById('chess-board');
 
-let a = 'test';
-
-window.test=function() {
-    
-}
-
 for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
         var loc = letter[x] + num[y];
