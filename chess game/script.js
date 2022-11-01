@@ -16,14 +16,6 @@ class Table {
         }
 
     }
-
-    selected_piece() {
-        // check for the image in the table cell
-        var fullPath = document.getElementById('b_rook').src;
-        var fileName = fullPath.replace(/^.*[\\\/\_bw]/, '');
-        console.log(fileName);
-        
-    }
 }
 
 class Cell {
@@ -57,28 +49,48 @@ class Cell {
     }
 
     moveImage() {
+        chess_table = document.getElementById('chess-board');
+        var row = starting[0], column = starting[1];
+        var temp;
+        var currentCell = chess_table.rows[row].cells[column];;
+        var img = document.createElement("IMG"); // create the image
+        var srcImg = currentCell.firstElementChild.getAttribute('src'); // get the src of starting cell
+        img.setAttribute("src", srcImg); 
+
+
+        if (temp) {
+            currentCell.removeChild(currentCell.firstElementChild);
+            currentCell.appendChild(temp);
+        }
+
+        temp = currentCell.firstElementChild;
+        row = destination[0];
+        column = destination[1];
+        currentCell.removeChild(currentCell.firstElementChild); // remove image from starting cell
+        currentCell = chess_table.rows[row].cells[column];
+        currentCell.removeChild(currentCell.firstElementChild); // remove preexisting image from destination cell
+        currentCell.appendChild(img);
 
     }
 
     select() { // manages click
-        if (starting.length == 0) {
+        if (starting.length == 0) { // first click - move piece from
             starting[0] = this.table_cell.getAttribute('row');
             starting[1] = this.table_cell.getAttribute('column');
 
             starting[0] = starting[0]-1;
             starting[1] = starting[1]-1;
-
-            console.log(starting);
-        } else if (destination.length == 0) {
+        } else if (destination.length == 0) {  // second click - move piece to
             destination[0] = this.table_cell.getAttribute('row');
             destination[1] = this.table_cell.getAttribute('column');
 
             destination[0] = destination[0]-1;
             destination[1] = destination[1]-1;
-
-            console.log('des', destination);
         }      
-        if (starting.length != 0 && destination.length != 0) {
+        if (starting.length != 0 && destination.length != 0) { // move img
+            // run moveImage() here
+            this.moveImage();
+
             starting = [];
             destination = [];
         }
