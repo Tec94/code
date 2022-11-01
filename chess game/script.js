@@ -61,7 +61,7 @@ class Cell {
     }
 
     select() { // manages click
-        if (starting == []) {
+        if (starting.length == 0) {
             starting[0] = this.table_cell.getAttribute('row');
             starting[1] = this.table_cell.getAttribute('column');
 
@@ -69,16 +69,16 @@ class Cell {
             starting[1] = starting[1]-1;
 
             console.log(starting);
-        } else if (destination == []) {
+        } else if (destination.length == 0) {
             destination[0] = this.table_cell.getAttribute('row');
             destination[1] = this.table_cell.getAttribute('column');
 
             destination[0] = destination[0]-1;
             destination[1] = destination[1]-1;
 
-            console.log(destination);
-        } 
-        if (starting != [] && destination != []) {
+            console.log('des', destination);
+        }      
+        if (starting.length != 0 && destination.length != 0) {
             starting = [];
             destination = [];
         }
