@@ -28,7 +28,6 @@ class Cell {
 
     highlight() {
         global_clicked = true;
-        turn_count += 1
         this.clicked = true;
         
         last_square = this.location;
@@ -56,7 +55,6 @@ class Cell {
         var img = document.createElement("IMG"); // create the image
         var srcImg = currentCell.firstElementChild.getAttribute('src'); // get the src of starting cell
         img.setAttribute("src", srcImg); 
-
 
         if (temp) {
             currentCell.removeChild(currentCell.firstElementChild);
@@ -91,6 +89,8 @@ class Cell {
             // run moveImage() here
             this.moveImage();
 
+            turn_count += 1
+            
             starting = [];
             destination = [];
         }
@@ -133,11 +133,11 @@ for (let x = 0; x < 8; x++) {
 
         // creates a new Cell object for every cell
         cell_objects[x][y] = new Cell(loc, color);
-        chess_table = new Table();
+        table = new Table();
 
         document.getElementById(loc).addEventListener('click', function() {
             cell_objects[x][y].select()
-            chess_table.track_turn()
+            table.track_turn()
         }, false);
     }
 }
