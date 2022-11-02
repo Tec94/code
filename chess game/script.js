@@ -84,13 +84,18 @@ class Cell {
 
             destination[0] = destination[0]-1;
             destination[1] = destination[1]-1;
-        }      
+        }
+        if (starting[0]==destination[0] && starting[1]==destination[1]) {
+            starting = [];
+            destination = [];
+        }
         if (starting.length != 0 && destination.length != 0) { // move img
             // run moveImage() here
             this.moveImage();
 
             turn_count += 1
-            
+
+            // reset arrays
             starting = [];
             destination = [];
         }
