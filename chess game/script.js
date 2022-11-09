@@ -51,24 +51,35 @@ class Cell {
         chess_table = document.getElementById('chess-board');
         var row = starting[0], column = starting[1];
         var temp;
-        var currentCell = chess_table.rows[row].cells[column];;
+        var currentCell = chess_table.rows[row].cells[column];
         var img = document.createElement("IMG"); // create the image
         var srcImg = currentCell.firstElementChild.getAttribute('src'); // get the src of starting cell
-        img.setAttribute("src", srcImg); 
+        var colorReg = /(images|_|png|\/|\.|king|queen|knight|bishop|rook|pawn)/g;
+        var startingColor = srcImg.replace(colorReg, '');
+        var endingColor = '';
+        img.setAttribute("src", srcImg);
 
-        if (temp) {
-            currentCell.removeChild(currentCell.firstElementChild);
-            currentCell.appendChild(temp);
+        while (endingColor != startingColor) {
+            if (temp) {
+                currentCell.removeChild(currentCell.firstElementChild);
+                currentCell.appendChild(temp);
+            }
+
+            temp = currentCell.firstElementChild;
+            row = destination[0];
+            column = destination[1];
+
+            endingColor = chess_table.rows[row].cells[column].firstElementChild.getAttribute('src').replace(colorReg, '');
+            if (endingColor == startingColor) { // check if endingColor == to startingColor (same color pieces)
+                break;
+            }
+
+            currentCell.removeChild(currentCell.firstElementChild); // remove image from starting cell
+            currentCell = chess_table.rows[row].cells[column];
+
+            currentCell.removeChild(currentCell.firstElementChild); // remove preexisting image from destination cell
+            currentCell.appendChild(img);
         }
-
-        temp = currentCell.firstElementChild;
-        row = destination[0];
-        column = destination[1];
-        currentCell.removeChild(currentCell.firstElementChild); // remove image from starting cell
-        currentCell = chess_table.rows[row].cells[column];
-        currentCell.removeChild(currentCell.firstElementChild); // remove preexisting image from destination cell
-        currentCell.appendChild(img);
-
     }
 
     select() { // manages click
