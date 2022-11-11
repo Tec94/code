@@ -96,7 +96,7 @@ class Cell {
             destination[0] = destination[0]-1;
             destination[1] = destination[1]-1;
         }
-        if (starting[0]==destination[0] && starting[1]==destination[1]) { // reset array if double-clicking the same cellb
+        if (starting[0]==destination[0] && starting[1]==destination[1]) { // reset array if double-clicking the same cell
             starting = [];
             destination = [];
         }
