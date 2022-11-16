@@ -72,6 +72,8 @@ class Cell {
             endingColor = chess_table.rows[row].cells[column].firstElementChild.getAttribute('src').replace(colorReg, '');
             if (endingColor == startingColor) { // check if endingColor == to startingColor (same color pieces)
                 break;
+            } else {
+                turn_count += 1;
             }
 
             currentCell.removeChild(currentCell.firstElementChild); // remove image from starting cell
@@ -103,8 +105,6 @@ class Cell {
         if (starting.length != 0 && destination.length != 0) { // move img
             // run moveImage() here
             this.moveImage();
-
-            turn_count += 1
 
             // reset arrays
             starting = [];
