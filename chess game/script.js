@@ -73,7 +73,7 @@ class Cell {
             if (endingColor == startingColor) { // check if endingColor == to startingColor (same color pieces)
                 break;
             } else {
-                turn_count += 1;
+                turn_count += 1; // only change the turn_count if a valid move is made
             }
 
             currentCell.removeChild(currentCell.firstElementChild); // remove image from starting cell
