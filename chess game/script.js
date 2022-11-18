@@ -44,7 +44,6 @@ class Cell {
         this.table_cell = document.getElementById(this.location);
 
         this.clicked = false;
-        global_clicked = false;
     }
 
     moveImage() {
