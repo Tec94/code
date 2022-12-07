@@ -47,14 +47,14 @@ class Cell {
     }
 
     moveImage() {
-        chess_table = document.getElementById('chess-board');
+        var chess_table = document.getElementById('chess-board');
         var row = starting[0], column = starting[1]; // set row and column to respective starting values
         var temp; // placeholder variable
         var currentCell = chess_table.rows[row].cells[column]; // set currentCell to the cell at row and column
         var img = document.createElement("IMG"); // create the image
         var srcImg = currentCell.firstElementChild.getAttribute('src'); // get the src of starting cell
-        var colorReg = /(images|_|png|\/|\.|king|queen|knight|bishop|rook|pawn)/g; // only leaves color of srcImg
-        var startingColor = srcImg.replace(colorReg, ''); // get startingColor
+        var pieceReg = /(images|_|png|\/|\.|king|queen|knight|bishop|rook|pawn)/g; // only leaves color of srcImg
+        var startingColor = srcImg.replace(pieceReg, ''); // get startingColor
         var endingColor = ''; // empty for now - compare it later in the loop
         img.setAttribute("src", srcImg); // set img to the image of startingCell
 
@@ -68,7 +68,13 @@ class Cell {
             row = destination[0];
             column = destination[1];
 
-            endingColor = chess_table.rows[row].cells[column].firstElementChild.getAttribute('src').replace(colorReg, '');
+            let bool = this.piece_logic(srcImg, pieceReg, startingColor);
+
+            if (bool == false) {
+                break;
+            }
+
+            endingColor = chess_table.rows[row].cells[column].firstElementChild.getAttribute('src').replace(pieceReg, '');
             if (endingColor == startingColor) { // check if endingColor == to startingColor (same color pieces)
                 break;
             } else {
@@ -80,6 +86,26 @@ class Cell {
 
             currentCell.removeChild(currentCell.firstElementChild); // remove preexisting image from destination cell
             currentCell.appendChild(img);
+        }
+        return srcImg, pieceReg, startingColor;
+    }
+
+    piece_logic(srcImg, pieceReg, startingColor) {
+        var colorReg = /(images|_|png|\/|\.|white|black)/g; // only leaves piece of the cell
+        var piece = srcImg.replace(pieceReg, '');
+
+        if (startingColor == turn.toLowerCase() && piece == 'pawn') { // moving correct color piece
+
+        } else if (startingColor == turn.toLowerCase() && piece == 'rook') {
+
+        } else if (startingColor == turn.toLowerCase() && piece == ' bishop') {
+
+        } else if (startingColor == turn.toLowerCase() && piece == 'knight') {
+
+        } else if (startingColor == turn.toLowerCase() && piece == 'queen') {
+
+        } else if (startingColor == turn.toLowerCase() && piece == 'king') {
+
         }
     }
 
