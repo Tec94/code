@@ -7,10 +7,10 @@ export function pawnLogic(starting, destination, endingEmpty, startingColor) {
   
     // check if the pawn is white or black
     if (startingColor == 'white') {
-      // if the pawn is white, it can only move forward (toward the higher row indices)
+      // if the pawn is white, it can only move forward (toward the lower row indices)
       var forward = -1;
     } else {
-      // if the pawn is black, it can only move backward (toward the lower row indices)
+      // if the pawn is black, it can only move backward (toward the higher row indices)
       var forward = 1;
     }
   
