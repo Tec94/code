@@ -123,7 +123,7 @@ class Cell {
         var endingColor = ''; // empty for now - compare it later
         var endingEmpty = true;
 
-        let bool = this.piece_logic(srcImg, pieceReg, startingColor, endingEmpty, starting, destination);
+        let bool = this.pieceLogic(srcImg, pieceReg, startingColor, endingEmpty, starting, destination);
 
         endingColor = destCell.getAttribute('src').replace(pieceReg, '');
 
@@ -141,7 +141,7 @@ class Cell {
         startCell.setAttribute("src", "");
     }
 
-    piece_logic(srcImg, colorReg, startingColor, endingEmpty, starting, destination) {
+    pieceLogic(srcImg, colorReg, startingColor, endingEmpty, starting, destination) {
         var colorReg = /(images|_|png|\/|\.|white|black)/g; // only leaves piece of the cell
         var piece = srcImg.replace(colorReg, '');
 
@@ -159,6 +159,8 @@ class Cell {
         } else if (piece == 'bishop') {
 
         } else if (piece == 'knight') {
+            let a = knightLogic(starting, destination)
+            return a;
 
         } else if (piece == 'queen') {
 
