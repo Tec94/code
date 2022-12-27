@@ -1,4 +1,5 @@
 import { pawnLogic } from "./components/pawn.js";
+import { rookLogic } from "./components/rook.js";
 
 class Table {
     constructor() {
@@ -28,27 +29,24 @@ class Cell {
     }
 
     highlight() {
-        global_clicked = true;
-        
-        last_square = this.location;
         last_color = this.color;
-
-        this.clicked = true;
 
         this.table_cell.style.padding = '1px';
         this.table_cell.style.outlineColor = 'rgb(0, 170, 255)';
+
+        // add the 'clicked' class to the cell
+        this.table_cell.classList.add('clicked');
     }
 
-    unhighlight() {
-        this.table_cell = document.getElementById(last_square);
-        this.table_cell.style.outlineColor = last_color;
-
-        this.table_cell = document.getElementById(this.location);
-
-        this.clicked = false;
+    unhighlight(prev_cell) {
+        // remove the 'clicked' class from the cell
+        prev_cell.classList.remove('clicked');
+        prev_cell.style.outlineColor = last_color;
+        this.table_cell.style.padding = '0px';
     }
 
     select() { // manages click
+
         if (starting.length == 0) { // first click - move piece from
             starting[0] = this.table_cell.getAttribute('row');
             starting[1] = this.table_cell.getAttribute('column');
@@ -75,72 +73,73 @@ class Cell {
             destination = [];
         }
         
-        if (this.clicked==false && global_clicked==false) { // first click
+        // get the current clicked cell's status
+        let clicked = this.clicked;
+
+        // if the current cell is not clicked and nothing has been clicked globally
+        if (!clicked && !global_clicked) {
+            // highlight the current cell and set global_clicked to true
+            prev_cell = this.table_cell;
             this.highlight();
-        } else if (this.clicked==false && global_clicked==true) { // click on a square after clicking another one
-            this.unhighlight();
+            global_clicked = true;
+        }
+        // if the current cell is not clicked and something has been clicked globally
+        else if (!clicked && global_clicked) {
+            // unhighlight the previously clicked cell and highlight the current cell
             this.highlight();
-        } else { // clicking on the same square twice
-            this.unhighlight();
+            this.unhighlight(prev_cell);
+            prev_cell = this.table_cell;
+        }
+        // if the current cell is clicked
+        else if (clicked) {
+            // unhighlight the current cell and set global_clicked to false
+            this.unhighlight(prev_cell);
+            global_clicked = false;
         }
     }
 
     moveImage() {
+        let startRow = starting[0];
+        let startCol = starting[1];
+        let destRow = destination[0];
+        let destCol = destination[1];
+
         var chess_table = document.getElementById('chess-board');
-        var row = starting[0], column = starting[1]; // set row and column to respective starting values
-        var temp; // placeholder variable
-        var currentCell = chess_table.rows[row].cells[column]; // set currentCell to the cell at row and column
-        var img = document.createElement("IMG"); // create the image
-        var srcImg = currentCell.firstElementChild.getAttribute('src'); // get the src of starting cell
-        var pieceReg = /(images|_|png|\/|\.|king|queen|knight|bishop|rook|pawn)/g; // only leaves color of srcImg
-        var startingColor = srcImg.replace(pieceReg, ''); // get startingColor
-        var endingColor = ''; // empty for now - compare it later in the loop
+
+        // Get the img elements for the starting and destination cells
+        let startCell = chess_table.rows[startRow].cells[startCol].firstElementChild;
+        let destCell = chess_table.rows[destRow].cells[destCol].firstElementChild;
+
+        // Get the src of starting cell
+        var srcImg = startCell.getAttribute('src');
+        
+        // Get color of startCell
+        var pieceReg = /(images|_|png|\/|\.|king|queen|knight|bishop|rook|pawn)/g;
+        var startingColor = srcImg.replace(pieceReg, '');
+        var endingColor = ''; // empty for now - compare it later
         var endingEmpty = true;
-        img.setAttribute("src", srcImg); // set img to the image of startingCell
 
-        while (endingColor != startingColor) {
-            if (temp) {
-                currentCell.removeChild(currentCell.firstElementChild);
-                currentCell.appendChild(temp);
-            }
+        let bool = this.piece_logic(srcImg, pieceReg, startingColor, endingEmpty, starting, destination);
 
-            temp = currentCell.firstElementChild;
-            row = destination[0];
-            column = destination[1];
+        endingColor = destCell.getAttribute('src').replace(pieceReg, '');
 
-            if (chess_table.rows[row].cells[column].firstElementChild.getAttribute('src') == '') {
-                endingEmpty = true;
-            } else {
-                endingEmpty = false;
-            }
+        if (bool == false) {return;}
+        if (destCell.getAttribute('src') == '') {endingEmpty = true;} else {endingEmpty = false;}
+        if (endingColor == startingColor) {return;} else {turn_count += 1;} // only change the turn_count if a valid move is made
 
-            endingColor = chess_table.rows[row].cells[column].firstElementChild.getAttribute('src').replace(pieceReg, '');
+        // Get the src attribute of the starting cell
+        let src = startCell.getAttribute("src");
 
-            let bool = this.piece_logic(srcImg, pieceReg, startingColor, endingEmpty, starting, destination);
-            if (bool == false) {
-                break;
-            }
+        // Set the src attribute of the destination cell to the src attribute of the starting cell
+        destCell.setAttribute("src", src);
 
-            if (endingColor == startingColor) { // check if endingColor == to startingColor (same color pieces)
-                break;
-            } else {
-                turn_count += 1; // only change the turn_count if a valid move is made
-            }
-
-            currentCell.removeChild(currentCell.firstElementChild); // remove image from starting cell
-            currentCell = chess_table.rows[row].cells[column];
-
-            currentCell.removeChild(currentCell.firstElementChild); // remove preexisting image from destination cell
-            currentCell.appendChild(img);
-
-            break; // prevents it from running twice
-        }
+        // Set the src attribute of the starting cell to an empty string
+        startCell.setAttribute("src", "");
     }
 
     piece_logic(srcImg, colorReg, startingColor, endingEmpty, starting, destination) {
         var colorReg = /(images|_|png|\/|\.|white|black)/g; // only leaves piece of the cell
         var piece = srcImg.replace(colorReg, '');
-        var firstmove = true;
 
         if (startingColor != turn.toLowerCase()) {return false;}
 
@@ -148,25 +147,27 @@ class Cell {
             let a = pawnLogic(starting, destination, endingEmpty, startingColor);
             return a;
 
-        } else if (startingColor == turn.toLowerCase() && piece == 'rook') {
+        } else if (piece == 'rook') {
+            let a = rookLogic(starting, destination);
+            return a;
 
-        } else if (startingColor == turn.toLowerCase() && piece == ' bishop') {
+        } else if (piece == 'bishop') {
 
-        } else if (startingColor == turn.toLowerCase() && piece == 'knight') {
+        } else if (piece == 'knight') {
 
-        } else if (startingColor == turn.toLowerCase() && piece == 'queen') {
+        } else if (piece == 'queen') {
 
-        } else if (startingColor == turn.toLowerCase() && piece == 'king') {
+        } else if (piece == 'king') {
 
         }
     }
 }
 
 var global_clicked = false;
-var last_square = "";
-var last_color = "";
+var last_color = null;
 var turn = 'White';
 var turn_count = 1;
+var prev_cell = null;
 
 var starting = [];
 var destination = [];
