@@ -145,9 +145,10 @@ class Cell {
         var colorReg = /(images|_|png|\/|\.|white|black)/g; // only leaves piece of the cell
         var piece = srcImg.replace(colorReg, '');
 
+        // Check if player is moving correct color piece
         if (startingColor != turn.toLowerCase()) {return false;}
 
-        if (piece == 'pawn') { // moving correct color piece
+        if (piece == 'pawn') {
             let a = pawnLogic(starting, destination, endingEmpty, startingColor);
             return a;
 
