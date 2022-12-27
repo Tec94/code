@@ -1,3 +1,3 @@
-export function knight_logic() {
+export function knightLogic() {
     return true;
 }

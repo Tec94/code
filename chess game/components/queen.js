@@ -1,3 +1,3 @@
-export function queen_logic() {
+export function queenLogic() {
     return true;
 }

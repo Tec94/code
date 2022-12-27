@@ -1,3 +1,3 @@
-export function bishop_logic() {
+export function bishopLogic() {
     return true;
 }

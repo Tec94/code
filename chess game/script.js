@@ -1,5 +1,9 @@
 import { pawnLogic } from "./components/pawn.js";
 import { rookLogic } from "./components/rook.js";
+import { knightLogic } from "./components/knight.js";
+import { kingLogic } from "./components/king.js";
+import { queenLogic } from "./components/queen.js";
+
 
 class Table {
     constructor() {

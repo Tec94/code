@@ -1,3 +1,3 @@
-export function king_logic() {
+export function kingLogic() {
     return true;
 }
