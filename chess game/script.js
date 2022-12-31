@@ -1,6 +1,7 @@
 import { pawnLogic } from "./components/pawn.js";
 import { rookLogic } from "./components/rook.js";
 import { knightLogic } from "./components/knight.js";
+import { bishopLogic } from "./components/bishop.js"
 import { kingLogic } from "./components/king.js";
 import { queenLogic } from "./components/queen.js";
 
@@ -123,7 +124,7 @@ class Cell {
         var endingColor = ''; // empty for now - compare it later
         var endingEmpty = true;
 
-        let bool = this.pieceLogic(srcImg, pieceReg, startingColor, endingEmpty, starting, destination);
+        let bool = this.pieceLogic(srcImg, pieceReg, startingColor, endingEmpty, starting, destination, destCell);
 
         endingColor = destCell.getAttribute('src').replace(pieceReg, '');
 
@@ -141,9 +142,10 @@ class Cell {
         startCell.setAttribute("src", "");
     }
 
-    pieceLogic(srcImg, colorReg, startingColor, endingEmpty, starting, destination) {
+    pieceLogic(srcImg, colorReg, startingColor, endingEmpty, starting, destination, destCell) {
         var colorReg = /(images|_|png|\/|\.|white|black)/g; // only leaves piece of the cell
         var piece = srcImg.replace(colorReg, '');
+        
 
         // Check if player is moving correct color piece
         if (startingColor != turn.toLowerCase()) {return false;}
@@ -157,12 +159,17 @@ class Cell {
             return a;
 
         } else if (piece == 'bishop') {
+            let a = bishopLogic(starting, destination, destCell);
+            return a;
 
         } else if (piece == 'knight') {
-            let a = knightLogic(starting, destination)
+            let a = knightLogic(starting, destination);
             return a;
 
         } else if (piece == 'queen') {
+            let a = rookLogic(starting, destination);
+            let b = bishopLogic(starting, destination, destCell);
+            return a||b;
 
         } else if (piece == 'king') {
 
