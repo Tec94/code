@@ -155,7 +155,7 @@ class Cell {
             return a;
 
         } else if (piece == 'rook') {
-            let a = rookLogic(starting, destination);
+            let a = rookLogic(starting, destination, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
             return a;
 
         } else if (piece == 'bishop') {
@@ -172,7 +172,9 @@ class Cell {
             return a||b;
 
         } else if (piece == 'king') {
-
+            let a = kingLogic(starting, destination, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
+            return a;
+            
         }
     }
 }
@@ -186,29 +188,34 @@ var prev_cell = null;
 var starting = [];
 var destination = [];
 
+var hasMovedRookWL = false; // white left rook
+var hasMovedRookWR = false; // white right rook
+var hasMovedRookBL = false; // black left rook
+var hasMovedRookBR = false; // black right rook
+
 const letter = ['a','b','c','d','e','f','g','h'];
 const num = [1,2,3,4,5,6,7,8];
 const cell_objects = [[],[],[],[],[],[],[],[]];
 var chess_table = document.getElementById('chess-board');
 
 for (let x = 0; x < 8; x++) {
-for (let y = 0; y < 8; y++) {
-    var loc = letter[x] + num[y];
-    var color = '';
+    for (let y = 0; y < 8; y++) {
+        var loc = letter[x] + num[y];
+        var color = '';
 
-    // check if x%2 = 0 and y%2 = 0 then assign to color
-    if (x%2==1 && y%2==1) {color = 'rgb(238, 238, 213)'};
-    if (x%2==0 && y%2==0) {color = 'rgb(238, 238, 213)'};
-    if (x%2==1 && y%2==0) {color = 'rgb(125, 148, 93)'};
-    if (x%2==0 && y%2==1) {color = 'rgb(125, 148, 93)'};
+        // check if x%2 = 0 and y%2 = 0 then assign to color
+        if (x%2==1 && y%2==1) {color = 'rgb(238, 238, 213)'};
+        if (x%2==0 && y%2==0) {color = 'rgb(238, 238, 213)'};
+        if (x%2==1 && y%2==0) {color = 'rgb(125, 148, 93)'};
+        if (x%2==0 && y%2==1) {color = 'rgb(125, 148, 93)'};
 
-    // creates a new Cell object for every cell
-    cell_objects[x][y] = new Cell(loc, color);
-    var table = new Table();
+        // creates a new Cell object for every cell
+        cell_objects[x][y] = new Cell(loc, color);
+        var table = new Table();
 
-    document.getElementById(loc).addEventListener('click', function() {
-        cell_objects[x][y].select()
-        table.track_turn()
-    }, false);
-}
+        document.getElementById(loc).addEventListener('click', function() {
+            cell_objects[x][y].select()
+            table.track_turn()
+        }, false);
+    }
 }

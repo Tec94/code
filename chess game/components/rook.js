@@ -1,4 +1,4 @@
-export function rookLogic(starting, destination) {
+export function rookLogic(starting, destination, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR) {
     // Check if the starting and destination cells are on the same row or column
     if (starting[0] !== destination[0] && starting[1] !== destination[1]) {
         return false;
@@ -33,5 +33,19 @@ export function rookLogic(starting, destination) {
             }
         }
     }
+    // enable hasMoved for selected rook
+    hasMoved(starting, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
     return true;
+}
+function hasMoved(starting, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR) {
+    let y1 = starting[0], x1 = starting[1];
+    if ((x1 == 0) && (y1 == 0)) {
+        hasMovedRookBL = true;
+    } else if ((x1 == 0) && (y1 == 7)) {
+        hasMovedRookWL = true;
+    } else if ((x1 == 7) && (y1 == 0)) {
+        hasMovedRookBR = true;
+    } else {
+        hasMovedRookWR = true;
+    }
 }
