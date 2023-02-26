@@ -16,10 +16,16 @@ class Table {
             turn = 'Black';
             this.turn.style.opacity = 1;
             this.turn.innerHTML = turn;
+
+            //if turn is black, set kingLoc to white king
+            kingLoc = [7, 4];
         } else if ((turn_count % 2) == 1) { // if turn_count is odd - white moves
             turn = 'White';
             this.turn.style.opacity = 1;
             this.turn.innerHTML = turn;
+
+            //if turn is white, set kingLoc to black king
+            kingLoc = [0, 4];
         }
     }
 }
@@ -156,27 +162,36 @@ class Cell {
 
         } else if (piece == 'rook') {
             let a = rookLogic(starting, destination, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
-            // declare kingBool = rookLogic() but plug in destination for starting and kingLoc for destination
-            
+            kingBool = rookLogic(destination, kingLoc, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
+            console.log(kingBool)
             return a;
 
         } else if (piece == 'bishop') {
             let a = bishopLogic(starting, destination, destCell);
+            kingBool = bishopLogic(destination, kingLoc, destCell);
+            console.log(kingBool)
             return a;
 
         } else if (piece == 'knight') {
             let a = knightLogic(starting, destination);
+            kingBool = knightLogic(destination, kingLoc);
+            console.log(kingBool)
             return a;
 
         } else if (piece == 'queen') {
             let a = rookLogic(starting, destination);
             let b = bishopLogic(starting, destination, destCell);
+
+            let c = rookLogic(destination, kingLoc);
+            let d = bishopLogic(destination, kingLoc, destCell);
+            kingBool = c||d;
+
+            console.log(kingBool)
             return a||b;
 
         } else if (piece == 'king') {
-            let a = kingLogic(starting, destination, kingLoc, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
+            let a = kingLogic(starting, destination, kingLoc, startingColor,hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
             return a;
-            
         }
     }
 }
@@ -189,7 +204,9 @@ var prev_cell = null;
 
 var starting = [];
 var destination = [];
-var kingLoc = [];
+var kingLoc = [0,4];
+var kingLocB = [0, 4];
+var kingLocW = [7, 4];
 
 var kingBool = false;
 

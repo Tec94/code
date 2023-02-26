@@ -1,54 +1,65 @@
 let hasMovedKing = false; // king
 
-import { pawnLogic } from "./components/pawn.js";
-import { rookLogic } from "./components/rook.js";
-import { knightLogic } from "./components/knight.js";
-import { bishopLogic } from "./components/bishop.js"
-
-export function kingLogic(starting, destination, kingLoc, qhasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR) {
-    let a = moveLogic(starting, destination);
+export function kingLogic(start, dest, kingLoc, startingColor, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR) {
+    let a = moveLogic(start, dest);
     let b = castlingLogic();
-    let c = NotInCheck();
 
-    if (!a) {return b, c;}
-    else {return a, c;}
+    return a || b;
 }
-function moveLogic(starting, destination, kingLoc) {
+function moveLogic(start, dest, kingLoc) {
     // check if move is within 1 square in any direction
-    if (Math.abs(starting[0] - starting[1]) <= 1 && Math.abs(destination[0] - destination[1]) <= 1) {
-        kingLoc = destination;
+    if (Math.abs(start[0] - start[1]) <= 1 && Math.abs(dest[0] - dest[1]) <= 1) {
+        // check starting color, if white, save position to kingLocW, if black, save to kingLocB
+        if (startingColor == 'white') {
+            kingLocW = dest;
+        } else {
+            kingLocB = dest;
+        }
         return true;
     } else {
         return false;
     }
 }
 function castlingLogic() {
-    let x1 = starting[0], y1 = starting[1], x2 = destination[0], y2 = destination[1];
+    let x1 = start[0], y1 = start[1], x2 = dest[0], y2 = dest[1];
     if ((x1 == x2) && Math.abs((y2 - y1))==2 && !hasMovedKing) { // same row, moved 2 spaces away, king hasn't moved
         // check if rook on that side hasn't moved
         if ((y1 > y2) && (x1 == 7)) { // white king moved left
             if (!hasMovedRookWL) {
-                kingLoc = destination;
+                if (startingColor == 'white') {
+                    kingLocW = dest;
+                } else {
+                    kingLocB = dest;
+                }
                 return true;
             }
         } else if ((y1 < y2) && (x1 == 7)) { // white king moved right
             if (!hasMovedRookWR) {
-                kingLoc = destination;
+                if (startingColor == 'white') {
+                    kingLocW = dest;
+                } else {
+                    kingLocB = dest;
+                }
                 return true;
             }
         } else if ((y1 > y2) && (x1 == 0)) { // black king moved left
             if (!hasMovedRookBL) {
-                kingLoc = destination;
+                if (startingColor == 'white') {
+                    kingLocW = dest;
+                } else {
+                    kingLocB = dest;
+                }
                 return true;
             }
         } else if ((y1 < y2) && (x1 == 0)) { // black king moved right
             if (!hasMovedRookBR) {
-                kingLoc = destination;
+                if (startingColor == 'white') {
+                    kingLocW = dest;
+                } else {
+                    kingLocB = dest;
+                }
                 return true;
             }
         }
     }
-}
-function NotInCheck() {
-    
 }
