@@ -3,7 +3,6 @@ import { rookLogic } from "./components/rook.js";
 import { knightLogic } from "./components/knight.js";
 import { bishopLogic } from "./components/bishop.js"
 import { kingLogic } from "./components/king.js";
-import { queenLogic } from "./components/queen.js";
 
 
 class Table {
@@ -152,10 +151,13 @@ class Cell {
 
         if (piece == 'pawn') {
             let a = pawnLogic(starting, destination, endingEmpty, startingColor);
+            kingBool = pawnLogic(destination, kingLoc, endingEmpty, startingColor);
             return a;
 
         } else if (piece == 'rook') {
             let a = rookLogic(starting, destination, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
+            // declare kingBool = rookLogic() but plug in destination for starting and kingLoc for destination
+            
             return a;
 
         } else if (piece == 'bishop') {
@@ -172,7 +174,7 @@ class Cell {
             return a||b;
 
         } else if (piece == 'king') {
-            let a = kingLogic(starting, destination, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
+            let a = kingLogic(starting, destination, kingLoc, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
             return a;
             
         }
@@ -187,6 +189,9 @@ var prev_cell = null;
 
 var starting = [];
 var destination = [];
+var kingLoc = [];
+
+var kingBool = false;
 
 var hasMovedRookWL = false; // white left rook
 var hasMovedRookWR = false; // white right rook
