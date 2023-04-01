@@ -1,5 +1,5 @@
 
-export function setup(starting, destination, chess_table) {
+export function setup(chess_table) {
     // move the white pawn on row 6 col 2 to row 5 col 2 and remove the image of row 6 col 2
     chess_table.rows[6].cells[3].firstElementChild.src = '';
     chess_table.rows[5].cells[3].firstElementChild.src = 'images/white_pawn.png';
