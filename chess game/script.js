@@ -3,6 +3,7 @@ import { rookLogic } from "./components/rook.js";
 import { knightLogic } from "./components/knight.js";
 import { bishopLogic } from "./components/bishop.js"
 import { kingLogic } from "./components/king.js";
+import { setup } from "./setup_debug.js";
 
 
 class Table {
@@ -17,15 +18,11 @@ class Table {
             this.turn.style.opacity = 1;
             this.turn.innerHTML = turn;
 
-            //if turn is black, set kingLoc to white king
-            kingLoc = [7, 4];
         } else if ((turn_count % 2) == 1) { // if turn_count is odd - white moves
             turn = 'White';
             this.turn.style.opacity = 1;
             this.turn.innerHTML = turn;
 
-            //if turn is white, set kingLoc to black king
-            kingLoc = [0, 4];
         }
     }
 }
@@ -156,69 +153,128 @@ class Cell {
         if (startingColor != turn.toLowerCase()) {return false;}
 
         if (piece == 'pawn') {
+            previousP = 'pawn';
+            previousLoc = destination;
+
             let a = pawnLogic(starting, destination, endingEmpty, startingColor);
             kingBool = pawnLogic(destination, kingLoc, endingEmpty, startingColor);
+
+            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
+                kingBoolB = kingBool;
+            } else {
+                kingBoolW = kingBool;
+            }
+
             return a;
 
         } else if (piece == 'rook') {
+            previousP = 'rook';
+            previousLoc = destination;
+
             let a = rookLogic(starting, destination, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
             kingBool = rookLogic(destination, kingLoc, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
-            console.log(kingBool)
+
+            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
+                kingBoolB = kingBool;
+            } else {
+                kingBoolW = kingBool;
+            }
+
             return a;
 
         } else if (piece == 'bishop') {
-            let a = bishopLogic(starting, destination, destCell);
-            kingBool = bishopLogic(destination, kingLoc, destCell);
-            console.log(kingBool)
+            previousP = 'bishop';
+            previousLoc = destination;
+            
+            let a = bishopLogic(starting, destination, chess_table);
+            kingBool = bishopLogic(destination, kingLoc, chess_table);
+
+            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
+                kingBoolB = kingBool;
+            } else {
+                kingBoolW = kingBool;
+            }
+
             return a;
 
         } else if (piece == 'knight') {
+            previousP = 'knight';
+            previousLoc = destination;
+            
             let a = knightLogic(starting, destination);
             kingBool = knightLogic(destination, kingLoc);
-            console.log(kingBool)
+
+            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
+                kingBoolB = kingBool;
+            } else {
+                kingBoolW = kingBool;
+            }
+
             return a;
 
         } else if (piece == 'queen') {
+            previousP = 'queen';
+            previousLoc = destination;
+            
             let a = rookLogic(starting, destination);
-            let b = bishopLogic(starting, destination, destCell);
+            let b = bishopLogic(starting, destination, chess_table);
 
             let c = rookLogic(destination, kingLoc);
             let d = bishopLogic(destination, kingLoc, destCell);
             kingBool = c||d;
 
-            console.log(kingBool)
+            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
+                kingBoolB = kingBool;
+            } else {
+                kingBoolW = kingBool;
+            }
+
             return a||b;
 
         } else if (piece == 'king') {
-            let a = kingLogic(starting, destination, kingLoc, startingColor,hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
+            previousP = 'king';
+            previousLoc = destination;
+            
+            let a = kingLogic(starting, destination, kingLoc, startingColor, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
             return a;
         }
     }
+
 }
 
 var global_clicked = false;
 var last_color = null;
-var turn = 'White';
-var turn_count = 1;
+export var turn = 'White';
+var turn_count = 5;//1;
 var prev_cell = null;
 
 var starting = [];
 var destination = [];
-var kingLoc = [0,4];
-var kingLocB = [0, 4];
-var kingLocW = [7, 4];
+var kingLoc = [7,4];
+export var kingLocB = [0, 4];
+export var kingLocW = [7, 4];
 
 var kingBool = false;
+var kingBoolW = false; // check status of the king
+var kingBoolB = false; // same
 
-var hasMovedRookWL = false; // white left rook
-var hasMovedRookWR = false; // white right rook
-var hasMovedRookBL = false; // black left rook
-var hasMovedRookBR = false; // black right rook
+export var previousP = ''; // stores the name of the previous piece
+export var previousLoc = []; // stores the location of the previous piece
+
+export var previousP_xDir = 0; // stores the x direction of the previous piece
+export var previousP_yDir = 0; // stores the y direction of the previous piece
+
+export var hasMovedRookWL = false; // white left rook
+export var hasMovedRookWR = false; // white right rook
+export var hasMovedRookBL = false; // black left rook
+export var hasMovedRookBR = false; // black right rook
 
 const letter = ['a','b','c','d','e','f','g','h'];
 const num = [1,2,3,4,5,6,7,8];
 const cell_objects = [[],[],[],[],[],[],[],[]];
 var chess_table = document.getElementById('chess-board');
+
+setup(starting, destination, chess_table);
 
 for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
