@@ -44,8 +44,8 @@ export function bishopLogic(start, dest, chess_table) {
 }
 
 export function manageDBC(previousLoc, chess_table, turn, kingLocB, kingLocW) {
-    turn = turn.toLowerCase();
-    if (turn == 'white') {
+    //turn = turn.toLowerCase();
+    if (turn == 'White') {
         let a = didBlockCheck(previousP, previousLoc, chess_table, turn, kingLocB);
         return a;
     } else {
@@ -70,10 +70,6 @@ export function didBlockCheck(previousP, previousLoc, chess_table, turn, kingLoc
         let a = knightLogic(previousLoc, kingLoc);
         return a;
     } else if (previousP == 'queen') {
-        if (count == 0) {
-
-        }
-        count++;
 
         let a = bishopLogic(previousLoc, kingLoc, chess_table, turn, kingLoc);
         let b = rookLogic(previousLoc, kingLoc, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);

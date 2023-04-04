@@ -1,7 +1,7 @@
 import { pawnLogic } from "./components/pawn.js";
 import { rookLogic } from "./components/rook.js";
 import { knightLogic } from "./components/knight.js";
-import { bishopLogic } from "./components/bishop.js"
+import { bishopLogic, manageDBC } from "./components/bishop.js"
 import { kingLogic } from "./components/king.js";
 import { setup } from "./setup_debug.js";
 
@@ -188,6 +188,8 @@ class Cell {
             
             let a = bishopLogic(starting, destination, chess_table);
             kingBool = bishopLogic(destination, kingLoc, chess_table);
+            let b = manageDBC(previousP, previousLoc, starting, destination, chess_table);
+            console.log(b);
 
             if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
                 kingBoolB = kingBool;
@@ -218,6 +220,13 @@ class Cell {
             
             let a = rookLogic(starting, destination);
             let b = bishopLogic(starting, destination, chess_table);
+            if (kingBool ==  true) {
+                let didBlockCheck = manageDBC(previousLoc, chess_table, turn, kingLocB, kingLocW);
+                console.log(didBlockCheck);
+            }
+
+            // move the piece regardless of check status, run check logic after, and if the move still puts the king in check, undo the move
+            
 
             let c = rookLogic(destination, kingLoc);
             let d = bishopLogic(destination, kingLoc, destCell);
