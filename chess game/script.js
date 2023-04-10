@@ -159,11 +159,8 @@ class Cell {
             let a = pawnLogic(starting, destination, endingEmpty, startingColor);
             kingBool = pawnLogic(destination, kingLoc, endingEmpty, startingColor);
 
-            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
-                kingBoolB = kingBool;
-            } else {
-                kingBoolW = kingBool;
-            }
+            if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;} 
+            else {kingBoolW = kingBool;}
 
             return a;
 
@@ -174,11 +171,8 @@ class Cell {
             let a = rookLogic(starting, destination, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
             kingBool = rookLogic(destination, kingLoc, hasMovedRookBL, hasMovedRookBR, hasMovedRookWL, hasMovedRookWR);
 
-            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
-                kingBoolB = kingBool;
-            } else {
-                kingBoolW = kingBool;
-            }
+            if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;} 
+            else {kingBoolW = kingBool;}
 
             return a;
 
@@ -191,7 +185,7 @@ class Cell {
             let checkBlocked = manageDBC(previousP, previousLoc, starting, destination, chess_table);
             console.log(checkBlocked);
 
-            if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;} // matches check status (kingBool) to the color of the king being checked
+            if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;}
             else {kingBoolW = kingBool;}
 
             return a;
@@ -203,11 +197,8 @@ class Cell {
             let a = knightLogic(starting, destination);
             kingBool = knightLogic(destination, kingLoc);
 
-            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
-                kingBoolB = kingBool;
-            } else {
-                kingBoolW = kingBool;
-            }
+            if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;} 
+            else {kingBoolW = kingBool;}
 
             return a;
 
@@ -219,8 +210,7 @@ class Cell {
             let b = bishopLogic(starting, destination, chess_table);
             if (kingBool ==  true) {
                 let didBlockCheck = manageDBC(previousLoc, chess_table, turn, kingLocB, kingLocW);
-                console.log(didBlockCheck);
-            }
+                console.log(didBlockCheck);}
 
             // move the piece regardless of check status, run check logic after, and if the move still puts the king in check, undo the move
             
@@ -229,11 +219,8 @@ class Cell {
             let d = bishopLogic(destination, kingLoc, destCell);
             kingBool = c||d;
 
-            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
-                kingBoolB = kingBool;
-            } else {
-                kingBoolW = kingBool;
-            }
+            if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;} 
+            else {kingBoolW = kingBool;}
 
             return a||b;
 
