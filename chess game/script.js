@@ -188,14 +188,11 @@ class Cell {
             
             let a = bishopLogic(starting, destination, chess_table);
             kingBool = bishopLogic(destination, kingLoc, chess_table);
-            let b = manageDBC(previousP, previousLoc, starting, destination, chess_table);
-            console.log(b);
+            let checkBlocked = manageDBC(previousP, previousLoc, starting, destination, chess_table);
+            console.log(checkBlocked);
 
-            if (turn.toLowerCase() == 'white') { // matches check status (kingBool) to the color of the king being checked
-                kingBoolB = kingBool;
-            } else {
-                kingBoolW = kingBool;
-            }
+            if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;} // matches check status (kingBool) to the color of the king being checked
+            else {kingBoolW = kingBool;}
 
             return a;
 
