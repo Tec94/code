@@ -44,7 +44,6 @@ export function bishopLogic(start, dest, chess_table) {
 }
 
 export function manageDBC(previousLoc, chess_table, turn, kingLocB, kingLocW) {
-    //turn = turn.toLowerCase();
     if (turn == 'White') {
         let a = didBlockCheck(previousP, previousLoc, chess_table, turn, kingLocB);
         return a;
