@@ -220,13 +220,11 @@ class Cell {
             
             let a = rookLogic(starting, destination);
             let b = bishopLogic(starting, destination, chess_table);
-            if (kingBool ==  true) {
-                let didBlockCheck = manageDBC(previousLoc, chess_table, turn, kingLocB, kingLocW);
-                console.log(didBlockCheck);
-            }
+
+            
 
             // move the piece regardless of check status, run check logic after, and if the move still puts the king in check, undo the move
-            
+
 
             let c = rookLogic(destination, kingLoc);
             let d = bishopLogic(destination, kingLoc, destCell);
