@@ -181,10 +181,16 @@ class Cell {
             previousLoc = destination;
             
             let a = bishopLogic(starting, destination, chess_table);
-            kingBool = bishopLogic(destination, kingLoc, chess_table);
-            let checkBlocked = manageDBC(previousP, previousLoc, starting, destination, chess_table);
-            console.log(checkBlocked);
 
+            // if the kingBool of matching color == turn then run manageDBC() to see if the move blocked the check
+            if (kingBoolW == true && kingBoolW == turn.toLowerCase()) {
+                let checkBlocked = manageDBC(previousP, previousLoc, starting, destination, chess_table);
+                console.log(checkBlocked);
+
+                return a&&checkBlocked;
+        
+
+            kingBool = bishopLogic(destination, kingLoc, chess_table);
             if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;}
             else {kingBoolW = kingBool;}
 
