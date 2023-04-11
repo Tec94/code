@@ -46,10 +46,10 @@ export function bishopLogic(start, dest, chess_table) {
 export function manageDBC(previousLoc, chess_table, turn, kingLocB, kingLocW) {
     if (turn == 'White') {
         let a = didBlockCheck(previousP, previousLoc, chess_table, turn, kingLocB);
-        return a;
+        return !a;
     } else {
         let a = didBlockCheck(previousP, previousLoc, chess_table, turn, kingLocW);
-        return a;
+        return !a;
     }
 }
 
