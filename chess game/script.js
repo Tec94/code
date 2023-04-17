@@ -187,14 +187,21 @@ class Cell {
                 let checkBlocked = manageDBC(previousP, previousLoc, starting, destination, chess_table);
                 console.log(checkBlocked);
 
+                kingBool = bishopLogic(destination, kingLoc, chess_table);
+                if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;}
+                else {kingBoolW = kingBool;}
+
                 return a&&checkBlocked;
-        
+            } else if (kingBoolB == true && kingBoolB == turn.toLowerCase()) {
+                let checkBlocked = manageDBC(previousP, previousLoc, starting, destination, chess_table);
+                console.log(checkBlocked);
 
-            kingBool = bishopLogic(destination, kingLoc, chess_table);
-            if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;}
-            else {kingBoolW = kingBool;}
+                kingBool = bishopLogic(destination, kingLoc, chess_table);
+                if (turn.toLowerCase() == 'white') {kingBoolB = kingBool;}
+                else {kingBoolW = kingBool;}
 
-            return a;
+                return a&&checkBlocked;
+            } else {return a;}
 
         } else if (piece == 'knight') {
             previousP = 'knight';
