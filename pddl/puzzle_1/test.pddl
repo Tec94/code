@@ -1,0 +1,68 @@
+(define (domain river-crossing)
+  (:requirements :strips :typing)
+  (:types monk demon)
+  (:predicates (on-boat ?x)
+         (on-left ?x)
+         
+         (on-right ?x)
+         (monk ?x)
+         (demon ?x)
+         (boat ?x)
+         (left ?x)
+         (right ?x)
+         (crossed ?x)
+         (safe ?x)
+         (not-safe ?x)
+         (not-crossed ?x)
+         (not-on-boat ?x)
+         (not-on-left ?x)
+         (not-on-right ?x)
+         (not-monk ?x)
+         (not-demon ?x)
+         (not-boat ?x)
+         (not-left ?x)
+         (not-right ?x))
+  (:action cross
+      :parameters (?x ?y)
+      :precondition (and (on-boat ?x) (on-boat ?y) (safe ?x) (safe ?y) (not-crossed ?x) (not-crossed ?y))
+      :effect (and (crossed ?x) (crossed ?y) (not-on-boat ?x) (not-on-boat ?y) (not-safe ?x) (not-safe ?y) (not-crossed ?x) (not-crossed ?y) (not-on-left ?x) (not-on-left ?y) (not-on-right ?x) (not-on-right ?y) (not-monk ?x) (not-monk ?y) (not-demon ?x) (not-demon ?y) (not-boat ?x) (not-boat ?y) (not-left ?x) (not-left ?y) (not-right ?x) (not-right ?y))
+      )
+  (:action move-boat-left
+      :parameters (?x)
+      :precondition (and (on-boat ?x) (safe ?x) (not-crossed ?x))
+      :effect (and (on-left ?x) (not-on-boat ?x) (not-safe ?x) (not-crossed ?x) (not-on-right ?x) (not-monk ?x) (not-demon ?x) (not-boat ?x) (not-right ?x))
+      )
+  (:action move-boat-right
+      :parameters (?x)
+      :precondition (and (on-boat ?x) (safe ?x) (not-crossed ?x))
+      :effect (and (on-right ?x) (not-on-boat ?x) (not-safe ?x) (not-crossed ?x) (not-on-left ?x) (not-monk ?x) (not-demon ?x) (not-boat ?x) (not-left ?x))
+      )
+  (:action move-boat-left-monk
+      :parameters (?x)
+      :precondition (and (on-boat ?x) (safe ?x) (not-crossed ?x) (monk ?x))
+      :effect (and (on-left ?x) (not-on-boat ?x) (not-safe ?x) (not-crossed ?x) (not-on-right ?x) (not-monk ?x) (not-demon ?x) (not-boat ?x) (not-right ?x))
+      )
+  ; continue with the code
+  (:action move-boat-right-monk
+      :parameters (?x)
+      :precondition (and (on-boat ?x) (safe ?x) (not-crossed ?x) (monk ?x))
+      :effect (and (on-right ?x) (not-on-boat ?x) (not-safe ?x) (not-crossed ?x) (not-on-left ?x) (not-monk ?x) (not-demon ?x) (not-boat ?x) (not-left ?x))
+      )
+  (:action move-boat-left-demon
+      :parameters (?x)
+      :precondition (and (on-boat ?x) (safe ?x) (not-crossed ?x) (demon ?x))
+      :effect (and (on-left ?x) (not-on-boat ?x) (not-safe ?x) (not-crossed ?x) (not-on-right ?x) (not-monk ?x) (not-demon ?x) (not-boat ?x) (not-right ?x))
+      )
+  (:action move-boat-right-demon
+      :parameters (?x)
+      :precondition (and (on-boat ?x) (safe ?x) (not-crossed ?x) (demon ?x))
+      :effect (and (on-right ?x) (not-on-boat ?x) (not-safe ?x) (not-crossed ?x) (not-on-left ?x) (not-monk ?x) (not-demon ?x) (not-boat ?x) (not-left ?x))
+      )
+  (:action move-boat-left-monk-demon
+      :parameters (?x ?y)
+      :precondition (and (on-boat ?x) (on-boat ?y) (safe ?x) (safe ?y) (not-crossed ?x) (not-crossed ?y) (monk ?x) (demon ?y))
+      :effect (and (on-left ?x) (on-left ?y) (not-on-boat ?x) (not-on-boat ?y) (not-safe ?x) (not-safe ?y) (not-crossed ?x) (not-crossed ?y) (not-on-right ?x) (not-on-right ?y) (not-monk ?x) (not-monk ?y) (not-demon ?x) (not-demon ?y) (not-boat ?x) (not-boat ?y) (not-right ?x) (not-right ?y) (not-left ?x) (not-left ?y))
+      )
+)  
+
+
