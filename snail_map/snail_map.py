@@ -29,14 +29,9 @@ def snail(snail_map):
         for x in snail_map[0]: {ans.append(x)}
     
     
-#snail(array)
+snail(array)
 
-
-# define a find_it function that takes in an array of integers and returns the integer that appears an odd number of times
-def find_it(seq):
-    for x in seq:
-        if seq.count(x) % 2 != 0:
-            return x
-    return None
-
-find_it([1,1,2])
+from collections import Counter
+mylist = [20, 30, 25, 20]
+[k for k,v in Counter(mylist).items() if v>1]
+print(k)
