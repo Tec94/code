@@ -2,7 +2,7 @@ from numpy import random
 import numpy as np
 
 #define matrix size
-size = 2
+size = 4
 
 arr1 = list(range(1, size * size))
 arr2 = []
@@ -19,3 +19,4 @@ for y in range(0, size):
 	for z in range(0, size):
 		print(str(arr2[size*y + z]).zfill(2), end =" ")
 	print()
+
