@@ -1,4 +1,4 @@
 env/
 pddl-generators-1.0/
 pddl/
-python jizz/ObjectDetection/resnet50_coco_best_v2.0.1.h5
+python_jizz/ObjectDetection/resnet50_coco_best_v2.0.1.h5
