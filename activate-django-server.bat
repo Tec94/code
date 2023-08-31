@@ -1,17 +1,20 @@
 @echo off
 
 rem Change directory to venv
-cd C:\Users\caoda\Desktop\coding\venv
+cd venv
 
 rem Change directory to Scripts
-cd C:\Users\caoda\Desktop\coding\venv\Scripts
+cd Scripts
+
+rem Activate virtual environment
+call activate.bat
 
 rem Change directory back to the original folder twice
 cd ..
 cd ..
 
 rem Change directory to movie-rec-website
-cd C:\Users\caoda\Desktop\coding\movie-rec-website
+cd movie-rec-website
 
 rem Run manage.py runserver
 python manage.py runserver
