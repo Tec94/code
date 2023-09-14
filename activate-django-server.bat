@@ -14,7 +14,7 @@ cd ..
 cd ..
 
 rem Change directory to movie-rec-website
-cd movie-rec-website
+cd movie-recommendation-site
 
 rem Run manage.py runserver
 python manage.py runserver
