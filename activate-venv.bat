@@ -8,3 +8,6 @@ cd Scripts
 
 rem Activate virtual environment
 call activate.bat
+
+rem Change directory to project root
+cd ../../
